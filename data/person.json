@@ -1,0 +1,8 @@
+{
+    "_id": {
+        "$oid": "643d395f0f6f8292d7b0a250"
+    },
+    "name": "test",
+    "bornDate": "1956",
+    "deathDate": "2016"
+}
