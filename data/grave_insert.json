@@ -6,11 +6,9 @@
       {
         "name": "Luke",
         "bornDate": "Skywalker",
-        "deathDate": "Luke",
-        "location": "Skywalker",
-        "note": "ddd"      
-      }
-    ]
+        "deathDate": "Luke"  
+      } 
+    ],
+    "location": "AA1",
+    "note": "ddd"
   }
-  
-  

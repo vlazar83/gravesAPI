@@ -6,7 +6,7 @@ var grave = new Schema({
   _id: Schema.Types.UUID,
   persons: [
     {
-      _id: "UUID",
+      _pid: "UUID",
       name: String,
       bornDate: String,
       deathDate: String,

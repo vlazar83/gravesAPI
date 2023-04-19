@@ -1,25 +1,30 @@
-'use strict';
+"use strict";
 
-var router = require('express').Router();
+var router = require("express").Router();
+var mongoose = require("mongoose");
+// graveSchema = mongoose.model("grave");
+var graveSchema = require("../models/grave");
 
-var mongoose = require('mongoose');
-var graves = require('../models/grave');
+router.get("/graves", (req, res) => {
+  getItems(req.query).then(function (FoundItems) {
+    console.log("read data from DB with query: " + JSON.stringify(req.query));
+    console.log("result: " + JSON.stringify(FoundItems));
 
-router.get('/graves',(req, res) => {    
-    getItems().then(function(FoundItems){
-    
-        res.send(FoundItems);
-    
-      });
-    console.log('xxx');
-    });
+    res.send(FoundItems);
+  });
+});
 
+router.post("/graves", async (req, res) => {
+  var new_grave = new graveSchema(req.body);
 
-async function getItems(){
+  const result = await new_grave.save();
 
-    const Items = await graves.find({});
-    return Items;
+    res.json(result);
+});
 
+async function getItems(filter) {
+  const Items = await graveSchema.find(filter);
+  return Items;
 }
 
-module.exports = router
+module.exports = router;
