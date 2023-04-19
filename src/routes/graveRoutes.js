@@ -15,11 +15,15 @@ router.get("/graves", (req, res) => {
 });
 
 router.post("/graves", async (req, res) => {
-  var new_grave = new graveSchema(req.body);
-
-  const result = await new_grave.save();
-
+  try {
+    var new_grave = new graveSchema(req.body);
+    const result = await new_grave.save();
     res.json(result);
+  } catch (e) {
+    console.error(e);
+    res.statusCode = 400;
+    res.json({ Result: "Error" });
+  }
 });
 
 async function getItems(filter) {
