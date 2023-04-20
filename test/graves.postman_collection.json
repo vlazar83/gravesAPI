@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "a470f403-8294-4cef-ac65-de4c171d9931",
+		"name": "graves",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50001/graves",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50001",
+					"path": [
+						"graves"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "example filtering",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50001/graves?persons.name=Luke&note=ddd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50001",
+					"path": [
+						"graves"
+					],
+					"query": [
+						{
+							"key": "persons.name",
+							"value": "Luke"
+						},
+						{
+							"key": "note",
+							"value": "ddd"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter based on id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50001/graves?_id=9cf95dc1-3282-4698-b666-600c0ec48f46",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50001",
+					"path": [
+						"graves"
+					],
+					"query": [
+						{
+							"key": "_id",
+							"value": "9cf95dc1-3282-4698-b666-600c0ec48f46"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"_id\": \"9cf95dc1-3282-4698-b666-600c0ec48f46\",\n    \"persons\": [\n      {\n          \"_pid\": \"2b46fca0-03d0-4295-b427-8a8673014f01\",\n        \"name\": \"Luke\",\n        \"bornDate\": \"Skywalker\",\n        \"deathDate\": \"Luke\"  \n      } \n    ],\n    \"location\": \"AA1\",\n    \"note\": \"ddd\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:50001/graves",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50001",
+					"path": [
+						"graves"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy 2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"_id\": \"9cf95dc1-3282-4698-b666-600c0ec48f46\",\n    \"persons\": [\n      {\n          \"_pid\": \"2b46fca0-03d0-4295-b427-8a8673014f01\",\n        \"name\": \"Luke\",\n        \"bornDate\": \"Skywalker\",\n        \"deathDate\": \"Luke\"  \n      } \n    ],\n    \"location\": \"AA1\",\n    \"note\": \"ddd\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:50001/graves?graveID=9cf95dc1-3282-4698-b666-600c0ec48f46",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50001",
+					"path": [
+						"graves"
+					],
+					"query": [
+						{
+							"key": "graveID",
+							"value": "9cf95dc1-3282-4698-b666-600c0ec48f46"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy 3",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"persons\": [\n      {\n          \"_pid\": \"2b46fca0-03d0-4295-b427-8a8673014f01\",\n        \"name\": \"Luke222\",\n        \"bornDate\": \"Skywalker\",\n        \"deathDate\": \"Luke\"  \n      } \n    ],\n    \"location\": \"AA1\",\n    \"note\": \"ddd\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:50001/graves?graveID=9cf95dc1-3282-4698-b666-600c0ec48f46",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50001",
+					"path": [
+						"graves"
+					],
+					"query": [
+						{
+							"key": "graveID",
+							"value": "9cf95dc1-3282-4698-b666-600c0ec48f46"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

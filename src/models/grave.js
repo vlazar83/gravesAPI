@@ -3,10 +3,10 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var grave = new Schema({
-  _id: Schema.Types.UUID,
+  _id: String, //UUID style
   persons: [
     {
-      _pid: "UUID",
+      _pid: String, //UUID style
       name: String,
       bornDate: String,
       deathDate: String,
