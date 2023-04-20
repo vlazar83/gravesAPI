@@ -1,8 +1,6 @@
 "use strict";
 
 var router = require("express").Router();
-var mongoose = require("mongoose");
-// graveSchema = mongoose.model("grave");
 var graveSchema = require("../models/grave");
 
 router.get("/graves", (req, res) => {
