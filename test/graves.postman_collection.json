@@ -6,8 +6,141 @@
 	},
 	"item": [
 		{
+			"name": "JWT",
+			"item": [
+				{
+					"name": "JWT token - with read scope access",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jwt = pm.response.json().access_token;",
+									"pm.collectionVariables.set(\"JWT\", jwt);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"audience\": \"https://gravesAPI\",\n    \"grant_type\": \"client_credentials\"\n}"
+						},
+						"url": {
+							"raw": "https://dev-sm4ylq004f4gs18a.eu.auth0.com/oauth/token",
+							"protocol": "https",
+							"host": [
+								"dev-sm4ylq004f4gs18a",
+								"eu",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "JWT token - with modify scope access",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jwt = pm.response.json().access_token;",
+									"pm.collectionVariables.set(\"JWT\", jwt);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{client_secret_modify}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{client_id_modify}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"audience\": \"https://gravesAPI\",\n    \"grant_type\": \"client_credentials\"\n}"
+						},
+						"url": {
+							"raw": "https://dev-sm4ylq004f4gs18a.eu.auth0.com/oauth/token",
+							"protocol": "https",
+							"host": [
+								"dev-sm4ylq004f4gs18a",
+								"eu",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "get all",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -27,10 +160,20 @@
 		{
 			"name": "example filtering",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:50001/graves?persons.name=Luke&note=ddd",
+					"raw": "http://localhost:50001/graves?persons.name=Luke222&note=ddd",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -42,7 +185,7 @@
 					"query": [
 						{
 							"key": "persons.name",
-							"value": "Luke"
+							"value": "Luke222"
 						},
 						{
 							"key": "note",
@@ -56,6 +199,16 @@
 		{
 			"name": "filter based on id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -81,11 +234,21 @@
 		{
 			"name": "New Request Copy",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"_id\": \"9cf95dc1-3282-4698-b666-600c0ec48f46\",\n    \"persons\": [\n      {\n          \"_pid\": \"2b46fca0-03d0-4295-b427-8a8673014f01\",\n        \"name\": \"Luke\",\n        \"bornDate\": \"Skywalker\",\n        \"deathDate\": \"Luke\"  \n      } \n    ],\n    \"location\": \"AA1\",\n    \"note\": \"ddd\"\n  }",
+					"raw": "{\n        \"_id\": \"9cf95dc1-3282-4698-b666-600c0ec48f41\",\n    \"persons\": [\n      {\n          \"_pid\": \"2b46fca0-03d0-4295-b427-8a8673014f02\",\n        \"name\": \"Luke\",\n        \"bornDate\": \"Skywalker\",\n        \"deathDate\": \"Luke\"  \n      } \n    ],\n    \"location\": \"Mars\",\n    \"note\": \"ddd\"\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -93,14 +256,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:50001/graves",
+					"raw": "http://localhost:50001/gravesUpdates",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "50001",
 					"path": [
-						"graves"
+						"gravesUpdates"
 					]
 				}
 			},
@@ -109,6 +272,16 @@
 		{
 			"name": "New Request Copy 2",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -121,14 +294,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:50001/graves?graveID=9cf95dc1-3282-4698-b666-600c0ec48f46",
+					"raw": "http://localhost:50001/gravesUpdates?graveID=9cf95dc1-3282-4698-b666-600c0ec48f46",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "50001",
 					"path": [
-						"graves"
+						"gravesUpdates"
 					],
 					"query": [
 						{
@@ -143,6 +316,16 @@
 		{
 			"name": "New Request Copy 3",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -155,14 +338,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:50001/graves?graveID=9cf95dc1-3282-4698-b666-600c0ec48f46",
+					"raw": "http://localhost:50001/gravesUpdates?graveID=9cf95dc1-3282-4698-b666-600c0ec48f46",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "50001",
 					"path": [
-						"graves"
+						"gravesUpdates"
 					],
 					"query": [
 						{
@@ -173,6 +356,12 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "JWT",
+			"value": ""
 		}
 	]
 }
