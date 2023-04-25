@@ -22,7 +22,7 @@ const checkJwt = auth();
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/graves'); 
+mongoose.connect('mongodb://root:root@mongodb:27017/graves?authSource=admin'); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

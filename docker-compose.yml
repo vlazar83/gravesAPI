@@ -1,0 +1,26 @@
+version: "3"
+services:
+  graves-api:
+    container_name: graves-api
+    image: graves-api
+    restart: on-failure
+    build: .
+    ports:
+      - 50001:50001
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+  mongo_seed:
+    image: mongo:latest
+    links:
+      - mongodb
+    volumes:
+      - ./mongo-seed:/mongo-seed
+    command: /mongo-seed/import.sh
+    restart: on-failure

@@ -1,0 +1,28 @@
+[
+    {
+        "_id": "9cf95dc1-3282-4698-b666-600c0ec48f54",
+        "persons": [
+            {
+                "_pid": "2b46fca0-03d0-4295-b427-8a8673014f06",
+                "name": "Leia Skywalker",
+                "bornDate": "1980",
+                "deathDate": "2080"
+            }
+        ],
+        "location": "AA1",
+        "note": "the force be with you"
+    },
+    {
+        "_id": "9cf95dc1-3282-4698-b666-600c0ec48f53",
+        "persons": [
+            {
+                "_pid": "2b46fca0-03d0-4295-b427-8a8673014f04",
+                "name": "Luke Skywalker",
+                "bornDate": "1980",
+                "deathDate": "2080"
+            }
+        ],
+        "location": "AA1",
+        "note": "the force be with you"
+    }
+]
